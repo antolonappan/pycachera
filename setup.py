@@ -1,9 +1,9 @@
 from distutils.core import setup
-files = ["pycacher/*"]
+files = ["pycachera/*"]
 setup(
-        name = 'pycacher',
-        packages = ['pycacher'],
-        package_data = {'pycacher' : files },
+        name = 'pycachera',
+        packages = ['pycachera'],
+        package_data = {'pycachera' : files },
         version = '1.0.0',
         install_requires = ['numpy','pandas'],
         description = 'A powerfull python caching tool',
