@@ -99,7 +99,7 @@ class Cache(object):
             if isinstance(tag, np.integer):
                 a +=str(tag)
                 
-            if isinstance(tag, np.float):
+            if isinstance(tag, np.float64):
                 a +=str(tag)
 
             if type(tag) == dict:
