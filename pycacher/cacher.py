@@ -6,7 +6,7 @@ from numpy import ndarray
 import pandas as pd
 
         
-class Cacher(object):
+class Cache(object):
     """
     This is a decorator class, used for caching functions.
     
