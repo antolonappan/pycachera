@@ -5,6 +5,7 @@ setup(
         packages = ['pycacher'],
         package_data = {'pycacher' : files },
         version = '1.0.0',
+        install_requires = ['numpy','pandas'],
         description = 'A powerfull python caching tool',
         author = 'Anto Idicherian Lonappan',
         author_email = 'mail@antolonappan.me',
