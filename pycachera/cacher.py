@@ -10,21 +10,16 @@ class Cache(object):
     """
     This is a decorator class, used for caching functions.
     
-    cachefolder(optional): Folder for caching; if not found, it makes one
-    
-    If the args of a function are of different data types,
-    the artibute 'cachekey_gen' trys to create a unique key depanding on
-    few properties of the args. Currently it cannot handle a complex args,
-    but still it does a pretty good job
-    
-    cachekey(optional): You can override the above method by giving a 
-    particular human readable key(str) for example: 'This is a function
-    with fknee is 5, and alpha is 3'
-    
-    Verbose(optional): Just to know what's happening inside
+    Args:
+    cachefolder(optional): Folder for caching; if not found, the cache folder is set to '.cache' in the current working directory
+    extraarg(optional): If the function is a class method, you can give the extra arguments of the class as a list just for saving the cache
+    cachekey(optional): You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
+    verbose(optional): Just to know what's happening inside
+    Cobject(optional): If the function is a class method, set it to 'class', else 'function'
+    recache(optional): If you want to recache the function, set it to True
     """
     
-    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class"):
+    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class",recache=False):
 
         if cachefolder is None:
             cachefolder = os.path.join(os.getcwd(),'.cache')
@@ -37,6 +32,7 @@ class Cache(object):
         self.cachefolder = cachefolder
         self.Cobject = Cobject
         self.extrarg = extrarg
+        self.recache = recache
         
         if cachekey == None:
             self.cachekey = None
@@ -63,7 +59,7 @@ class Cache(object):
             
             cachefile = f"{fileprefix}/{hash_arg}"
                 
-            if os.path.isfile(cachefile):
+            if os.path.isfile(cachefile) and (not self.recache):
                 if self.verbose: print("CACHE WARNING: Returning Cached value")
                 return self.file_reader(cachefile)
             else:
@@ -76,6 +72,11 @@ class Cache(object):
     def cachekey_gen(self, arg):
         """
         Generates a unique key for a function, depending on the args
+        
+        If the args of a function are of different data types,
+        the artibute 'cachekey_gen' trys to create a unique key depanding on
+        few properties of the args. Currently it cannot handle a complex args,
+        but still it does a pretty good job
         """
         if self.Cobject == "class":
             Earg = []
