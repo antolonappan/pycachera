@@ -6,7 +6,7 @@ from numpy import ndarray
 import pandas as pd
 
         
-class cache(object):
+class Cacher(object):
     """
     This is a decorator class, used for caching functions.
     
@@ -26,18 +26,17 @@ class cache(object):
     
     def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class"):
 
-        if cachefolder == None:
+        if cachefolder is None:
             cachefolder = os.path.join(os.getcwd(),'.cache')
 
         if not os.path.exists(cachefolder):
-            if verbose: print(f"PyCache: No cache folder found")
+            if verbose: print("PyCache: No cache folder found")
             os.makedirs(cachefolder)
             if verbose: print(f"PyCache: Setting '{cachefolder}' as Cache folder")
         
         self.cachefolder = cachefolder
         self.Cobject = Cobject
         self.extrarg = extrarg
-        self.recache = recache
         
         if cachekey == None:
             self.cachekey = None
@@ -65,7 +64,7 @@ class cache(object):
             cachefile = f"{fileprefix}/{hash_arg}"
                 
             if os.path.isfile(cachefile):
-                if self.verbose: print(f"CACHE WARNING: Returning Cached value")
+                if self.verbose: print("CACHE WARNING: Returning Cached value")
                 return self.file_reader(cachefile)
             else:
                 if self.verbose: print(f"CACHE INFO: Caching {func.__name__} with a key:{hash_arg}")
@@ -75,6 +74,9 @@ class cache(object):
         return decorator
         
     def cachekey_gen(self, arg):
+        """
+        Generates a unique key for a function, depending on the args
+        """
         if self.Cobject == "class":
             Earg = []
             if self.extrarg is not None:
@@ -118,10 +120,16 @@ class cache(object):
         return md5(a.encode()).hexdigest()
     
     def file_writer(self,name,data):
+        """
+        Writes data to a file
+        """
         with open(name, 'wb') as writ:
             pl.dump(data, writ)
             
     def file_reader(self,name):
+        """
+        Reads data from a file
+        """
         with open(name, 'rb') as rea:
             data = pl.load(rea)
         return data
