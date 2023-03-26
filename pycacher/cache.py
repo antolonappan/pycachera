@@ -1,11 +1,12 @@
 import os
 import numpy as np
 from hashlib import md5
-import _pickle as pl
+import pickle as pl
 from numpy import ndarray
+import pandas as pd
 
         
-class cache_this(object):
+class cache(object):
     """
     This is a decorator class, used for caching functions.
     
@@ -23,16 +24,20 @@ class cache_this(object):
     Verbose(optional): Just to know what's happening inside
     """
     
-    def __init__(self,cachefolder='/scratch/anto/cache',extrarg=None,cachekey=None,verbose=False,Cobject="class"):
+    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class"):
+
+        if cachefolder == None:
+            cachefolder = os.path.join(os.getcwd(),'.cache')
 
         if not os.path.exists(cachefolder):
-            if verbose: print(f"UTILS INFO: No cache folder found")
+            if verbose: print(f"PyCache: No cache folder found")
             os.makedirs(cachefolder)
-            if verbose: print(f"UTILS INFO: Setting '{cachefolder}' as Cache")
+            if verbose: print(f"PyCache: Setting '{cachefolder}' as Cache folder")
         
         self.cachefolder = cachefolder
         self.Cobject = Cobject
         self.extrarg = extrarg
+        self.recache = recache
         
         if cachekey == None:
             self.cachekey = None
@@ -67,12 +72,9 @@ class cache_this(object):
                 cache = func(*args)
                 self.file_writer(cachefile, cache)
                 return cache
-                
-
         return decorator
         
     def cachekey_gen(self, arg):
-        
         if self.Cobject == "class":
             Earg = []
             if self.extrarg is not None:
@@ -80,7 +82,6 @@ class cache_this(object):
                     Earg.append(getattr(arg[0], earg))
         elif self.Cobject == "function":
             Earg = []
-                
         
         a = ''
         for tag in list(arg) + Earg:
@@ -110,7 +111,10 @@ class cache_this(object):
                     a += str(1)
                 else:
                     a += str(0)
-                    
+            
+            if type(tag) == pd.DataFrame:
+                a += ''.join(map(str,list(tag.columns)))
+                a += f'{len(tag)}'
         return md5(a.encode()).hexdigest()
     
     def file_writer(self,name,data):
