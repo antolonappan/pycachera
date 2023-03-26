@@ -1,1 +1,1 @@
-from cache import cache
+from .cache import cache
