@@ -11,8 +11,69 @@ A powerful python decorator to cache functions
 ## Installation
 
 In command line:
-        `pip install pycachera`
+
+`pip install pycachera`
 
 ## Usage
+
+Import the pycachera as:
+
+```
+from pycachera import cache
+```
+
+For caching a function
+```
+@cache(Cobject='function')
+def sum(a,b):
+   return a+b
+```
+
+For caching a class attributes
+
+```
+class Math:
+   def __init__(self):
+       pass
+   
+   @cache(Cobject='class')
+   def sum(a,b):
+      return a + b  
+```
+
+For caching to a specific directory
+
+```
+@cache(cachefolder='/home/user/scratch',Cobject='function')
+def sum(a,b):
+   return a+b
+```
+
+For caching with a specific key
+
+```
+@cache(cachekey='This a custom cache',Cobject='function')
+def sum(a,b):
+   return a+b
+```
+
+For printing the info
+
+```
+@cache(verbose=True,Cobject='function')
+def sum(a,b):
+   return a+b
+```
+
+While doing debugging your script if you want to ignore the cached values you can recache
+```
+@cache(recache=True,Cobject='function')
+def sum(a,b):
+   return a+b
+```
+
+
+
+## API
 
 visit [pycachera.readthedocs.io](https://pycachera.readthedocs.io/en/latest/)
