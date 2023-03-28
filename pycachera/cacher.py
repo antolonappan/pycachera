@@ -8,15 +8,21 @@ import pandas as pd
         
 class Cache(object):
     """
-    This is a decorator class, used for caching functions.
+    This is a decorator class, used for caching functions and class attributes.
     
-    Args:
-    cachefolder(optional): Folder for caching; if not found, the cache folder is set to '.cache' in the current working directory
-    extraarg(optional): If the function is a class method, you can give the extra arguments of the class as a list just for saving the cache
-    cachekey(optional): You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
-    verbose(optional): Just to know what's happening inside
-    Cobject(optional): If the function is a class method, set it to 'class', else 'function'
-    recache(optional): If you want to recache the function, set it to True
+    Args(optional):
+        :cachefolder (*str*): Folder for caching; if not found, the cache folder is set to '.cache' in the current working directory
+        :extraarg (*list*): If the function is a class method, you can give the extra arguments of the class as a list just for saving the cache
+        :cachekey (*str*): You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
+        :verbose (*bool*): Just to know what's happening inside
+        :Cobject (*str*): If the function is a class method, set it to 'class', else 'function'
+        :recache (*bool*): If you want to recache the function, set it to True
+    
+    Usage:
+        >>> from pycachera import cache
+        >>> @cache()
+        >>> def myfunc(self, x):
+        >>>     return x**2
     """
     
     def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class",recache=False):
