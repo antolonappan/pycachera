@@ -16,9 +16,6 @@ To cache a funtion or class attribute, you can use the ``pycachera.cache()`` dec
    :param str Cobject: The priority of the message, can be a number 1-5
    :param bool recache: The priority of the message, can be a number 1-5
    
-   :return: the message id
-   :rtype: int
-   :raises ValueError: if the message_body exceeds 160 characters
-   :raises TypeError: if the message_body is not a basestring
+ 
 
 
