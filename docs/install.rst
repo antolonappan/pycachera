@@ -1,5 +1,8 @@
+============
 Installation
+============
 
-At the command line:
+At the command line::
 
-`pip install pycachera`
+.. code-block:: bash
+    pip install crawler
