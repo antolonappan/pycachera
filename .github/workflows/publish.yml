@@ -1,8 +1,9 @@
-name: Publish ${package_name} to PyPI / GitHub
+name: Publish to PyPI / GitHub
 
 on:
   push:
     tags:
+        - '**'
 
 jobs:
   build-n-publish:
