@@ -12,3 +12,7 @@ A powerful python decorator to cache functions
 
 In command line:
         `pip install pycachera`
+
+## Usage
+
+visit [pycachera.readthedocs.io](https://pycachera.readthedocs.io/en/latest/)
