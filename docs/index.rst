@@ -11,8 +11,10 @@ Please provide feedback to `@antolonappan`_.
 .. toctree::
    :maxdepth: 2
    :caption: Installation
+   install
    
 .. toctree::
    :maxdepth: 2
    :caption: Manual
+   manual
    
