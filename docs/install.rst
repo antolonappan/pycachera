@@ -2,4 +2,4 @@ Installation
 
 At the command line:
 
-pip install pycachera
+`pip install pycachera`
