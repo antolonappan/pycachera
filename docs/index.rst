@@ -16,4 +16,3 @@ Please provide feedback to `@antolonappan`_.
    :maxdepth: 2
    :caption: Manual
    
-   
