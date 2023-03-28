@@ -7,7 +7,7 @@ To cache a funtion or class attribute, you can use the ``pycachera.cache()`` dec
 
 .. py:function:: cache(cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class",recache=False)
 
-   To Cache a funtion
+
 
    :param str cachefolder: The person sending the message
    :param list extrarg: The recipient of the message
