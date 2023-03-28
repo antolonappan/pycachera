@@ -19,4 +19,10 @@ Please provide feedback to `@antolonappan`_.
    :caption: Manual
    
    manual
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples
+   
+   example
    
