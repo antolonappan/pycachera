@@ -9,5 +9,5 @@ setup(
         description = 'A powerfull python caching tool',
         author = 'Anto Idicherian Lonappan',
         author_email = 'mail@antolonappan.me',
-        url = 'https://github.com/antolonappan/pycacher'
+        url = 'https://github.com/antolonappan/pycachera'
         )
