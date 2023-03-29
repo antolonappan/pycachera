@@ -65,7 +65,7 @@ def sum(a,b):
    return a+b
 ```
 
-While doing debugging your script if you want to ignore the cached values you can recache
+While debugging your script if you want to ignore the cached values you can recache
 ```
 @cache(recache=True,Cobject='function')
 def sum(a,b):
