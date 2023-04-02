@@ -25,7 +25,7 @@ class Cache(object):
         >>>     return x**2
     """
     
-    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class",recache=False):
+    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False):
 
         if cachefolder is None:
             cachefolder = os.path.join(os.getcwd(),'.cache')
@@ -36,7 +36,7 @@ class Cache(object):
             if verbose: print(f"PyCache: Setting '{cachefolder}' as Cache folder")
         
         self.cachefolder = cachefolder
-        self.Cobject = Cobject
+        self.Cobject = None
         self.extrarg = extrarg
         self.recache = recache
         
@@ -48,11 +48,16 @@ class Cache(object):
         
     def __call__(self, func):
         def decorator(*args,**kargs):
+
+            if (len(args) == 0) or len(str(args[0].__class__).split(".")) == 1:
+                self.Cobject = 'function'
+            else:
+                self.Cobject = 'class'
+            
             if self.Cobject=="class":
                 fileprefix = f"""{self.cachefolder}/{str(args[0].__class__).split(".")[-1].split("'")[0]}_{func.__name__}"""
             elif self.Cobject=="function":
                 fileprefix = f"{self.cachefolder}/{func.__name__}"
-            
             if not os.path.exists(fileprefix):
                 os.makedirs(fileprefix)
             
@@ -75,7 +80,7 @@ class Cache(object):
                 return cache
         return decorator
         
-    def cachekey_gen(self, arg,karg={}):
+    def cachekey_gen(self,arg,karg={}):
         """
         Generates a unique key for a function, depending on the args
         
@@ -84,13 +89,11 @@ class Cache(object):
         few properties of the args. Currently it cannot handle a complex args,
         but still it does a pretty good job
         """
+        Earg = []
         if self.Cobject == "class":
-            Earg = []
             if self.extrarg is not None:
                 for earg in self.extrarg:
                     Earg.append(getattr(arg[0], earg))
-        elif self.Cobject == "function":
-            Earg = []
         
         
         a = ''
