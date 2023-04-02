@@ -73,6 +73,8 @@ def sum(a,b):
 ```
 
 When you use cache with a class attribute, and if you want to consider some attributes of that class for caching,
+
+```
 class Math:
    def __init__(self,c):
        self.c = c
@@ -80,7 +82,7 @@ class Math:
    @cache(extrarg=['c'])
    def sum(a,b):
       return a + b  
-
+```
 
 
 
