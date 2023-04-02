@@ -15,7 +15,6 @@ class Cache(object):
         :extraarg (*list*): If the function is a class method, you can give the extra arguments of the class as a list just for saving the cache
         :cachekey (*str*): You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
         :verbose (*bool*): Just to know what's happening inside
-        :Cobject (*str*): If the function is a class method, set it to 'class', else 'function'
         :recache (*bool*): If you want to recache the function, set it to True
     
     Usage:
