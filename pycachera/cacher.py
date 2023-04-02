@@ -47,7 +47,7 @@ class Cache(object):
         self.verbose=verbose
         
     def __call__(self, func):
-        def decorator(*args):
+        def decorator(*args,**kargs):
             if self.Cobject=="class":
                 fileprefix = f"""{self.cachefolder}/{str(args[0].__class__).split(".")[-1].split("'")[0]}_{func.__name__}"""
             elif self.Cobject=="function":
@@ -59,7 +59,7 @@ class Cache(object):
 
         
             if self.cachekey is None:
-                hash_arg = self.cachekey_gen(args)
+                hash_arg = self.cachekey_gen(args,kargs)
             else:
                 hash_arg = self.cachekey
             
@@ -70,12 +70,12 @@ class Cache(object):
                 return self.file_reader(cachefile)
             else:
                 if self.verbose: print(f"CACHE INFO: Caching {func.__name__} with a key:{hash_arg}")
-                cache = func(*args)
+                cache = func(*args,**kargs)
                 self.file_writer(cachefile, cache)
                 return cache
         return decorator
         
-    def cachekey_gen(self, arg):
+    def cachekey_gen(self, arg,karg):
         """
         Generates a unique key for a function, depending on the args
         
@@ -92,8 +92,9 @@ class Cache(object):
         elif self.Cobject == "function":
             Earg = []
         
+        
         a = ''
-        for tag in list(arg) + Earg:
+        for tag in list(arg) + list(karg.keys()) + list(karg.values()) + Earg:
             if type(tag) == list:
                 a += ''.join(map(str,tag))
 
@@ -124,6 +125,7 @@ class Cache(object):
             if type(tag) == pd.DataFrame:
                 a += ''.join(map(str,list(tag.columns)))
                 a += f'{len(tag)}'
+
         return md5(a.encode()).hexdigest()
     
     def file_writer(self,name,data):
@@ -140,4 +142,3 @@ class Cache(object):
         with open(name, 'rb') as rea:
             data = pl.load(rea)
         return data
-
