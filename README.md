@@ -29,7 +29,7 @@ def sum(a,b):
    return a+b
 ```
 
-For caching a class attributes
+For caching a class attributes. This is removed in the release [3.0.0](https://github.com/antolonappan/pycachera/releases/tag/3.0.0)
 
 ```
 class Math:
@@ -41,7 +41,7 @@ class Math:
       return a + b  
 ```
 
-For caching to a specific directory
+For caching to a specific directory. This is removed in the release [3.0.0](https://github.com/antolonappan/pycachera/releases/tag/3.0.0)
 
 ```
 @cache(cachefolder='/home/user/scratch',Cobject='function')
