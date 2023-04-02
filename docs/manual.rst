@@ -13,7 +13,6 @@ To cache a funtion or class attribute, you can use the ``pycachera.cache()`` dec
    :param list extrarg: (Optional)If the function is a class method, you can give the extra arguments of the class as a list just for saving the cache
    :param str cachekey: (Optional) You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
    :param bool verbose: (Optional) To print the info
-   :param str Cobject: (Optional) If the function is a class method, set it to 'class', else 'function'
    :param bool recache: (Optional) If you want to recache the function, set it to True
    
  
