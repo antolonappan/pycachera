@@ -75,7 +75,7 @@ class Cache(object):
                 return cache
         return decorator
         
-    def cachekey_gen(self, arg,karg):
+    def cachekey_gen(self, arg,karg={}):
         """
         Generates a unique key for a function, depending on the args
         
