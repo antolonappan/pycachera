@@ -24,27 +24,27 @@ from pycachera import cache
 
 For caching a function
 ```
-@cache(Cobject='function')
+@cache()
 def sum(a,b):
    return a+b
 ```
 
-For caching a class attributes. This is removed in the release [3.0.0](https://github.com/antolonappan/pycachera/releases/tag/3.0.0)
+For caching a class attributes.
 
 ```
 class Math:
    def __init__(self):
        pass
    
-   @cache(Cobject='class')
+   @cache()
    def sum(a,b):
       return a + b  
 ```
 
-For caching to a specific directory. This is removed in the release [3.0.0](https://github.com/antolonappan/pycachera/releases/tag/3.0.0)
+For caching to a specific directory.
 
 ```
-@cache(cachefolder='/home/user/scratch',Cobject='function')
+@cache(cachefolder='/home/user/scratch')
 def sum(a,b):
    return a+b
 ```
@@ -52,7 +52,7 @@ def sum(a,b):
 For caching with a specific key
 
 ```
-@cache(cachekey='This a custom cache',Cobject='function')
+@cache(cachekey='This a custom cache')
 def sum(a,b):
    return a+b
 ```
@@ -60,17 +60,27 @@ def sum(a,b):
 For printing the info
 
 ```
-@cache(verbose=True,Cobject='function')
+@cache(verbose=True)
 def sum(a,b):
    return a+b
 ```
 
 While debugging your script if you want to ignore the cached values you can recache
 ```
-@cache(recache=True,Cobject='function')
+@cache(recache=True)
 def sum(a,b):
    return a+b
 ```
+
+When you use cache with a class attribute, and if you want to consider some attributes of that class for caching,
+class Math:
+   def __init__(self,c):
+       self.c = c
+   
+   @cache(extrarg=['c'])
+   def sum(a,b):
+      return a + b  
+
 
 
 
