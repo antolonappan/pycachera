@@ -133,6 +133,7 @@ class Cache(object):
     def file_writer(self,name,data):
         """
         Writes data to a file
+        save the data in a pickle file
         """
         with open(name, 'wb') as writ:
             pl.dump(data, writ)
@@ -140,6 +141,7 @@ class Cache(object):
     def file_reader(self,name):
         """
         Reads data from a file
+        save the data in a pickle file
         """
         with open(name, 'rb') as rea:
             data = pl.load(rea)
