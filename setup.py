@@ -10,5 +10,6 @@ setup(
         description = 'A powerfull python caching tool',
         author = 'Anto Idicherian Lonappan',
         author_email = 'mail@antolonappan.me',
-        url = 'https://github.com/antolonappan/pycachera'
+        url = 'https://github.com/antolonappan/pycachera',
+        long_description_content_type="text/markdown",
         )
