@@ -5,7 +5,7 @@ Manual
 To cache a funtion or class attribute, you can use the ``pycachera.cache()`` decorator:
 
 
-.. py:function:: cache(cachefolder=None,extrarg=None,cachekey=None,verbose=False,Cobject="class",recache=False)
+.. py:function:: cache(cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False)
 
 
 
