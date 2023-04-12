@@ -84,6 +84,19 @@ class Math:
       return a + b  
 ```
 
+To cache a class property,
+```
+class math:
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b
+    
+    @property
+    @cache(extrarg=['a','b'],verbose=True)
+    def add(self):
+        return self.a + self.b
+```
+
 
 
 ## API
