@@ -24,7 +24,7 @@ class Cache(object):
         >>>     return x**2
     """
     
-    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False):
+    def __init__(self,cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False,with_mpi=False):
 
         if cachefolder is None:
             cachefolder = os.path.join(os.getcwd(),'.cache')
@@ -38,7 +38,7 @@ class Cache(object):
         self.Cobject = None
         self.extrarg = extrarg
         self.recache = recache
-        
+        self.with_mpi = with_mpi
         if cachekey == None:
             self.cachekey = None
         else:
@@ -128,8 +128,8 @@ class Cache(object):
                 a += ''.join(map(str,list(tag.columns)))
                 a += f'{len(tag)}'
 
-        
-        a += str(mpi.rank)
+        if self.with_mpi:
+            a += str(mpi.rank)
 
         return md5(a.encode()).hexdigest()
     

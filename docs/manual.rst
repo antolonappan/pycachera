@@ -5,7 +5,7 @@ Manual
 To cache a funtion or class attribute, you can use the ``pycachera.cache()`` decorator:
 
 
-.. py:function:: cache(cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False)
+.. py:function:: cache(cachefolder=None,extrarg=None,cachekey=None,verbose=False,recache=False,with_mpi=False)
 
 
 
@@ -14,6 +14,7 @@ To cache a funtion or class attribute, you can use the ``pycachera.cache()`` dec
    :param str cachekey: (Optional) You can override the above method by giving a particular human readable key(str) for example: 'This is a function with fknee is 5, and alpha is 3'
    :param bool verbose: (Optional) To print the info
    :param bool recache: (Optional) If you want to recache the function, set it to True
+   :param bool with_mpi: (Optional) If you want to use the cache with mpi, set it to True
    
  
 
