@@ -4,7 +4,7 @@ from hashlib import md5
 import pickle as pl
 from numpy import ndarray
 import pandas as pd
-
+from pycachera import mpi
         
 class Cache(object):
     """
@@ -127,6 +127,9 @@ class Cache(object):
             if type(tag) == pd.DataFrame:
                 a += ''.join(map(str,list(tag.columns)))
                 a += f'{len(tag)}'
+
+        
+        a += str(mpi.rank)
 
         return md5(a.encode()).hexdigest()
     
