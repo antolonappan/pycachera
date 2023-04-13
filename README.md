@@ -97,6 +97,13 @@ class math:
         return self.a + self.b
 ```
 
+When using mpi4py.MPI,
+```
+@cache(with_mpi=True)
+def sum(a,b):
+   return a+b
+```
+
 
 
 ## API
